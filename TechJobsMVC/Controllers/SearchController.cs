@@ -17,6 +17,21 @@ namespace TechJobsMVC.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Search(string column, string value)
+        {
+            if ((column == "") || (value == ""))
+            {
+                ViewBag.Jobs = TechJobsMVC.Data.JobData.FindAll();
+            }
+            else
+            {
+                ViewBag.Jobs = TechJobsMVC.Data.JobData.FindByColumnAndValue(column, value);
+            }
+            return View();
+        }
+
+
         // TODO #3: Create an action method to process a search request and render the updated search view. 
     }
 }
