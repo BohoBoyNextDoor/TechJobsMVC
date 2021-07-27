@@ -21,7 +21,7 @@
             <input type="text" name="searchTerm" id="searchTerm" />
         </p>
 
-        
+
         <input type="submit" value="Search" />
     </form>
 
@@ -30,5 +30,30 @@
     @{
         //TODO #4: Loop over the search results to display all job fields.
     }
-
-</div>
+    @if (@ViewBag.jobs != null)
+        {
+            @foreach (Job job in ViewBag.jobs)
+            {
+              <table> = class "job-listing"
+                <tr>
+                    <td>@job.Id</td>
+                </tr>
+                <tr>
+                    <td>@job.Name</td>
+                </tr>
+                <tr>
+                    <td>@job.Employer</td>
+                </tr>
+                <tr>
+                    <td>@job.Location</td>
+                </tr>
+                <tr>
+                    <td>@job.PositionType</td>
+                </tr>    
+                <tr>    
+                    <td>@job.CoreCompetency</td>
+                </tr>
+              </table>
+             }
+        }
+    </div>
