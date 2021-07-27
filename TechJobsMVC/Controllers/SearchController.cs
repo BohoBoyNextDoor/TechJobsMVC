@@ -18,17 +18,12 @@ namespace TechJobsMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Search(string column, string value)
+        public IActionResult Search(string searchType, string searchTerm)
         {
-            if ((column == "") || (value == ""))
-            {
-                ViewBag.Jobs = TechJobsMVC.Data.JobData.FindAll();
-            }
-            else
-            {
-                ViewBag.Jobs = TechJobsMVC.Data.JobData.FindByColumnAndValue(column, value);
-            }
-            return View();
+            ViewBag.Jobs = (searchTerm == null)
+                ? Data.JobData.FindAll()
+                : Data.JobData.FindByColumnAndValue(searchType, searchTerm);
+            return View("views/search/index.cshtml");
         }
 
 
